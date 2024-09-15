@@ -5,22 +5,35 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/client/index.js",
-  output: {
-    libraryTarget: "var",
-    library: "Client",
-  },
   mode: "development",
   devtool: "source-map",
+  output: {
+    filename: "js/app.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    compress: true,
+    port: 8080,
+    hot: true,
+  },
   module: {
     rules: [
       {
-        test: "/.js$/",
+        test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: "babel-loader",
       },
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ["file-loader"],
       },
     ],
   },
@@ -29,14 +42,7 @@ module.exports = {
       template: "./src/client/views/index.html",
       filename: "./index.html",
     }),
-    new CleanWebpackPlugin({
-      // Simulate the removal of files
-      dry: true,
-      // Write Logs to Console
-      verbose: true,
-      // Automatically remove all unused webpack assets on rebuild
-      cleanStaleWebpackAssets: true,
-      protectWebpackAssets: false,
-    }),
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };

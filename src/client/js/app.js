@@ -1,7 +1,5 @@
-// Importing SCSS file
-import "./styles/style.scss";
+import "../styles/style.scss";
 
-// Function to fetch weather and image data
 const getTravelData = async (city) => {
   try {
     const response = await fetch("http://localhost:8081/getData", {
@@ -21,7 +19,6 @@ const getTravelData = async (city) => {
   }
 };
 
-// Function to update the trip information in the DOM
 const updateTripInfo = (tripDetails) => {
   document.getElementById("trip-location").textContent = tripDetails.location;
   document.getElementById("departure-date").textContent =
@@ -42,10 +39,8 @@ form.addEventListener("submit", async (event) => {
   const city = document.getElementById("city").value;
   const departureDate = document.getElementById("departure-date-input").value;
 
-  // Call the server to get the travel data
   const tripDetails = await getTravelData(city);
 
-  // Update the trip info with the fetched data
   updateTripInfo({ ...tripDetails, departureDate });
 });
 

@@ -5,19 +5,15 @@ const fetch = require("node-fetch");
 
 const app = express();
 
-// Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Serving static files
 app.use(express.static("dist"));
 
-// API Keys (replace with your actual API keys)
-const WEATHERBIT_API_KEY = "YOUR_WEATHERBIT_API_KEY";
-const PIXABAY_API_KEY = "YOUR_PIXABAY_API_KEY";
+const WEATHERBIT_API_KEY = process.env.WEATHERBIT_API_KEY;
+const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
 
-// Function to get weather data from Weatherbit
 const getWeatherData = async (city) => {
   const url = `https://api.weatherbit.io/v2.0/current?city=${city}&key=${WEATHERBIT_API_KEY}`;
 
@@ -26,8 +22,8 @@ const getWeatherData = async (city) => {
     const data = await response.json();
 
     const weather = {
-      high: data.data[0].temp, // Assuming temp is high temp
-      low: data.data[0].low_temp || "N/A", // Assuming there is a low temp field
+      high: data.data[0].temp,
+      low: data.data[0].low_temp || "N/A",
       description: data.data[0].weather.description,
     };
 
@@ -37,7 +33,6 @@ const getWeatherData = async (city) => {
   }
 };
 
-// Function to get an image from Pixabay
 const getCityImage = async (city) => {
   const url = `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${city}&image_type=photo`;
 
@@ -48,14 +43,13 @@ const getCityImage = async (city) => {
     if (data.hits.length > 0) {
       return data.hits[0].webformatURL;
     } else {
-      return "https://placekitten.com/400/300"; // Default image if no results
+      return "https://placekitten.com/400/300";
     }
   } catch (error) {
     console.error("Error fetching image from Pixabay:", error);
   }
 };
 
-// Endpoint to fetch travel data
 app.post("/getData", async (req, res) => {
   const { city } = req.body;
 
@@ -64,7 +58,6 @@ app.post("/getData", async (req, res) => {
     const weather = await getWeatherData(city);
     const image = await getCityImage(city);
 
-    // Calculate days away
     const currentDate = new Date();
     const departureDate = new Date(req.body.departureDate);
     const timeDiff = Math.abs(departureDate - currentDate);
@@ -83,7 +76,6 @@ app.post("/getData", async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(8081, () => {
   console.log("Server is running on http://localhost:8081");
 });
