@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Travel Planner</title>
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <body>
+        <div class="travel-planner">
+            <h1>Travel Planner</h1>
+            <div class="trip-details">
+                <img src="https://placekitten.com/400/300" alt="Travel Destination" id="location-image">
+                <div class="trip-info">
+                    <h2>My trip to:
+                        <span id="trip-location">Paris, France</span>
+                    </h2>
+                    <p>Departing:
+                        <span id="departure-date">02/12/2020</span>
+                    </p>
+                    <button id="save-trip" class="btn">Save trip</button>
+                    <button id="remove-trip" class="btn">Remove trip</button>
+                    <p>
+                        <span id="days-away">270</span> days away
+                    </p>
+                    <div class="weather-info">
+                        <p>Typical weather for then is:</p>
+                        <p>High:
+                            <span id="high-temp">46°F</span>, Low:
+                            <span id="low-temp">35°F</span>
+                        </p>
+                        <p id="weather-description">Mostly cloudy throughout the day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="bundle.js"></script>
+    </body>
+</html>
