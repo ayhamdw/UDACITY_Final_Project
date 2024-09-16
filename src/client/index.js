@@ -4,7 +4,7 @@ import {
   handleFormSubmit,
   handleTripButtons,
 } from "./js/app.js";
-import "./styles/style.scss"; // Import the SCSS file
+import "./styles/style.scss";
 
 handleFormSubmit();
 handleTripButtons();
