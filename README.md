@@ -122,3 +122,10 @@ npm run test
 - **Cross-browser compatibility**: The app ensures consistent rendering across modern browsers.
 - **Offline functionality**: Service workers have been implemented to cache assets and provide offline access.
 - **Future Improvements**: You can enhance this app further by adding more APIs for a richer experience, such as flight or hotel booking integration.
+
+### NodeJs versions that i have, and i use the 14.21.3 and it work correctly in my laptop, using "nvm list" command
+
+    22.8.0
+    20.11.1
+    17.9.1
+    14.21.3 (Currently using 64-bit executable)

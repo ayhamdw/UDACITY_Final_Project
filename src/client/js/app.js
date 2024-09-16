@@ -1,6 +1,5 @@
 import "../styles/style.scss";
 
-// Export the getTravelData function
 export const getTravelData = async (city) => {
   try {
     const response = await fetch("http://localhost:8081/getData", {
@@ -20,7 +19,6 @@ export const getTravelData = async (city) => {
   }
 };
 
-// Export the updateTripInfo function
 export const updateTripInfo = (tripDetails) => {
   document.getElementById("trip-location").textContent = tripDetails.location;
   document.getElementById("departure-date").textContent =
@@ -33,7 +31,6 @@ export const updateTripInfo = (tripDetails) => {
   document.getElementById("location-image").src = tripDetails.image;
 };
 
-// Export form submission handling
 export const handleFormSubmit = () => {
   const form = document.getElementById("travel-form");
   form.addEventListener("submit", async (event) => {
@@ -45,7 +42,6 @@ export const handleFormSubmit = () => {
   });
 };
 
-// Export save and remove trip buttons
 export const handleTripButtons = () => {
   document.getElementById("save-trip").addEventListener("click", () => {
     alert("Trip saved!");
