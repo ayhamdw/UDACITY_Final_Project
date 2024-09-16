@@ -1,4 +1,4 @@
-import "../styles/style.scss";
+// import "../styles/style.scss";
 
 export const getTravelData = async (city) => {
   try {
