@@ -1,6 +1,7 @@
 import "../styles/style.scss";
 
-const getTravelData = async (city) => {
+// Export the getTravelData function
+export const getTravelData = async (city) => {
   try {
     const response = await fetch("http://localhost:8081/getData", {
       method: "POST",
@@ -19,7 +20,8 @@ const getTravelData = async (city) => {
   }
 };
 
-const updateTripInfo = (tripDetails) => {
+// Export the updateTripInfo function
+export const updateTripInfo = (tripDetails) => {
   document.getElementById("trip-location").textContent = tripDetails.location;
   document.getElementById("departure-date").textContent =
     tripDetails.departureDate;
@@ -31,25 +33,25 @@ const updateTripInfo = (tripDetails) => {
   document.getElementById("location-image").src = tripDetails.image;
 };
 
-// Handling the form submission
-const form = document.getElementById("travel-form");
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+// Export form submission handling
+export const handleFormSubmit = () => {
+  const form = document.getElementById("travel-form");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const city = document.getElementById("city").value;
+    const departureDate = document.getElementById("departure-date-input").value;
+    const tripDetails = await getTravelData(city);
+    updateTripInfo({ ...tripDetails, departureDate });
+  });
+};
 
-  const city = document.getElementById("city").value;
-  const departureDate = document.getElementById("departure-date-input").value;
+// Export save and remove trip buttons
+export const handleTripButtons = () => {
+  document.getElementById("save-trip").addEventListener("click", () => {
+    alert("Trip saved!");
+  });
 
-  const tripDetails = await getTravelData(city);
-
-  updateTripInfo({ ...tripDetails, departureDate });
-});
-
-// Save trip button
-document.getElementById("save-trip").addEventListener("click", () => {
-  alert("Trip saved!");
-});
-
-// Remove trip button
-document.getElementById("remove-trip").addEventListener("click", () => {
-  alert("Trip removed!");
-});
+  document.getElementById("remove-trip").addEventListener("click", () => {
+    alert("Trip removed!");
+  });
+};

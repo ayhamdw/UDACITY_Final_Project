@@ -54,7 +54,6 @@ app.post("/getData", async (req, res) => {
   const { city } = req.body;
 
   try {
-    // Get weather and image data
     const weather = await getWeatherData(city);
     const image = await getCityImage(city);
 

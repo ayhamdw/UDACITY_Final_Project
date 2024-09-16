@@ -69,7 +69,7 @@ This is a travel planner application that helps users plan their trips by showin
 1. Build the project using Webpack.
 
    ```
-   npm run build
+   npm run prod
    ```
 
 2. Run the development server with hot reloading using Webpack Dev Server.
